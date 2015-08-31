@@ -2,7 +2,7 @@
 Proof of Concept code of the Shoplift code
 
 
-This is code exploits a few pretty big flaws in the very popular webshop CMS Magento.
+This is code exploits a few pretty big flaw in the very popular webshop CMS Magento.
 
 I did not find the exploit, all credits go to Checkpoint.
 You can read their technical public disclosure here: [Analyzing the Magento Vulnerability](http://blog.checkpoint.com/2015/04/20/analyzing-magento-vulnerability/)
